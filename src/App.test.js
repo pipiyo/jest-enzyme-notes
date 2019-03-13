@@ -17,7 +17,7 @@ describe('<App /> shallow rendering', () => {
 //  })
 
   it('should contain 1 p element', () => {
-    expect(wrapper.find('p').length).toBe(1)
+    expect(wrapper.find('p').length).toBe(2)
   })
 
   it('should ul contain 3 li element', () => {
@@ -37,6 +37,21 @@ describe('<App /> shallow rendering', () => {
     expect(toJson(tree)).toMatchSnapshot()
   })
 
+  it('on button click changes p text', () => {
+    const wrapper = shallow(<App />)
+    const button = wrapper.find('button')
+    expect(wrapper.find('.button-state').text()).toBe('No!')
+    button.simulate('click')
+    expect(wrapper.find('.button-state').text()).toBe('Yes!')
+  })
+
+  it('on input change, title changes text', () => {
+    const wrapper = shallow(<App />)
+    const input = wrapper.find('input')
+    expect(wrapper.find('h2').text()).toBe('')
+    input.simulate('change', {currentTarget: {value: 'Tyler'}})
+    expect(wrapper.find('h2').text()).toBe('Tyler')
+  })
 })
 
 describe('<App /> mount rendering', () => {

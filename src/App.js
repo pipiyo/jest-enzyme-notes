@@ -3,6 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  state = { 
+    on: false,
+    input: ''
+  }
   render() {
     return (
       <div className="App">
@@ -11,12 +15,7 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <h1 className="App-title">Welcome to React</h1>
-          <ul className="tyler">
-            <li>Test 1</li>
-            <li>Test 2</li>
-            <li>Test 3</li>
-          </ul>          
+          <h1 className="App-title">Welcome to React</h1>          
           <a
             className="App-link"
             href="https://reactjs.org"
@@ -26,6 +25,15 @@ class App extends Component {
             Learn React
           </a>
         </header>
+        <ul className="tyler">
+          <li>Test 1</li>
+          <li>Test 2</li>
+          <li>Test 3</li>
+        </ul>
+        <p className='button-state'>{this.state.on ? 'Yes!' : 'No!'}</p>
+        <button onClick={() => this.setState({on: true})}>Click</button>
+        <h2>{this.state.input}</h2>
+        <input onChange={(e) => this.setState({input: e.currentTarget.value})} type='text' />
       </div>
     );
   }
