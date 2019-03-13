@@ -17,7 +17,7 @@ describe('<App /> shallow rendering', () => {
 //  })
 
   it('should contain 1 p element', () => {
-    expect(wrapper.find('p').length).toBe(2)
+    expect(wrapper.find('p').length).toBe(3)
   })
 
   it('should ul contain 3 li element', () => {
@@ -60,6 +60,21 @@ describe('<App /> shallow rendering', () => {
     wrapper.setState({ mainColor: 'red' })
     expect(wrapper.find('.blue').length).toBe(0)
     expect(wrapper.find('.red').length).toBe(1)    
+  })  
+
+  it('calls componentDidMount, updates p tag text', () => {
+    jest.spyOn(App.prototype, 'componentDidMount')
+    const wrapper = shallow(<App />)
+    expect(App.prototype.componentDidMount.mock.calls.length).toBe(1)
+    expect(wrapper.find('.lifeCycle').text()).toBe('componentDidMount')
+  })
+
+  it('setProps calls componentWillReceiveProps', () => {
+    jest.spyOn(App.prototype, 'componentWillReceiveProps')
+    const wrapper = shallow(<App />)
+    wrapper.setProps({ hide: true })
+    expect(App.prototype.componentWillReceiveProps.mock.calls.length).toBe(1)
+    expect(wrapper.find('.lifeCycle').text()).toBe('componentWillReceiveProps')
   })  
 })
 
