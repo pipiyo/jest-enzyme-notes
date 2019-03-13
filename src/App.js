@@ -5,7 +5,8 @@ import './App.css';
 class App extends Component {
   state = { 
     on: false,
-    input: ''
+    input: '',
+    mainColor: 'blue'
   }
   render() {
     return (
@@ -15,7 +16,8 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <h1 className="App-title">Welcome to React</h1>          
+          <h1 className="App-title">Welcome to React</h1> 
+          <h3 className={this.state.mainColor}>Everyone is Welcome!</h3>         
           <a
             className="App-link"
             href="https://reactjs.org"
